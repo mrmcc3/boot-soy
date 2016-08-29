@@ -5,6 +5,8 @@
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
                             [boot/core "2.6.0" :scope "test"]])
 
+(def snapshot? (.endsWith +version+ "-SNAPSHOT"))
+
 (task-options!
   pom {:project     +project+
        :version     +version+
@@ -14,8 +16,8 @@
        :license     {"Eclipse Public License" "http://www.eclipse.org/legal/epl-v10.html"}}
  push {:repo "clojars"
        :ensure-clean true
-       :tag true
-       :gpg-sign (not (.endsWith +version+ "-SNAPSHOT"))})
+       :tag (not snapshot?)
+       :gpg-sign (not snapshot?)})
 
 (require '[mrmcc3.boot-soy :refer [soy]])
 
