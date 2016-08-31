@@ -1,5 +1,5 @@
 (def +project+ 'mrmcc3/boot-soy)
-(def +version+ "0.1.1-SNAPSHOT")
+(def +version+ "0.1.1")
 
 (set-env! :resource-paths   #{"src"}
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]

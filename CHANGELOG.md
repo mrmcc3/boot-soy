@@ -4,6 +4,8 @@ This change log follows the conventions of
 [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [0.1.1] - 2016-08-31
 ### Added
 - this CHANGELOG.md
 - comments in `mrmcc3.boot-soy.impl`
@@ -18,4 +20,5 @@ kebab style keywords are available as camelCase in templates
 - Initial project files
 - Initial implementation
 
-[Unreleased]: https://github.com/mrmcc3/boot-soy/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/mrmcc3/boot-soy/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/mrmcc3/boot-soy/compare/0.1.0...0.1.1
