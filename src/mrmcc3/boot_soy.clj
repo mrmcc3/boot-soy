@@ -22,8 +22,11 @@
               (update-in [:dependencies] into deps)
               pod/make-pod
               future)
-        render (fn [tpl data]
-                 (pod/with-call-in @p (mrmcc3.boot-soy.impl/render ~tpl ~data)))
+        render (fn r
+                 ([tpl data] (r tpl data nil))
+                 ([tpl data inj]
+                  (pod/with-call-in @p
+                    (mrmcc3.boot-soy.impl/render ~tpl ~data ~inj))))
         old-fileset (atom nil)]
     (core/with-pre-wrap fileset
       (let [old @old-fileset
@@ -41,7 +44,7 @@
           (pod/with-call-in @p (mrmcc3.boot-soy.impl/set-files! ~paths))
           (seq changed)
           (pod/with-call-in @p (mrmcc3.boot-soy.impl/recompile-tofu!)))
-        (util/info "loaded %s soy files...\n" (count soy-src))
+        (util/info "found %s soy files...\n" (count soy-src))
         (-> (with-meta fileset {::render render})
             (core/rm soy-src)
             core/commit!)))))
