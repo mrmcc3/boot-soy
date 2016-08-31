@@ -4,6 +4,8 @@ This change log follows the conventions of
 [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+- no longer removes soy files from fileset. simplifies soy task
+- updated soy task docstring
 
 ## [0.1.1] - 2016-08-31
 ### Added
