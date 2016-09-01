@@ -1,9 +1,7 @@
 (def +project+ 'mrmcc3/boot-soy)
 (def +version+ "0.1.2-SNAPSHOT")
 
-(set-env! :resource-paths   #{"src"}
-          :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                            [boot/core "2.6.0" :scope "test"]])
+(set-env! :resource-paths #{"src"})
 
 (def snapshot? (.endsWith +version+ "-SNAPSHOT"))
 
