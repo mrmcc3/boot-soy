@@ -32,12 +32,12 @@
     (core/with-pre-wrap fileset
       (let [prev    @prev-fileset
             changed (->> (core/fileset-changed prev fileset)
-                         core/input-files (core/by-ext [".soy"]))
+                         core/input-files (core/by-ext ["soy"]))
             added   (->> (core/fileset-added prev fileset)
-                         core/input-files (core/by-ext [".soy"]))
+                         core/input-files (core/by-ext ["soy"]))
             removed (->> (core/fileset-removed prev fileset)
-                         core/input-files (core/by-ext [".soy"]))
-            paths   (->> fileset core/input-files (core/by-ext [".soy"])
+                         core/input-files (core/by-ext ["soy"]))
+            paths   (->> fileset core/input-files (core/by-ext ["soy"])
                          (map #(-> % core/tmp-file .getPath)))]
         (reset! prev-fileset fileset)
         (util/info "found %s soy files...\n" (count paths))
