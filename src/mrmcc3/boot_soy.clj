@@ -31,7 +31,7 @@
         prev-fileset (atom nil)]
     (core/with-pre-wrap fileset
       (let [prev    @prev-fileset
-            changed (->> (core/fileset-changed prev fileset)
+            changed (->> (core/fileset-changed prev fileset :hash)
                          core/input-files (core/by-ext ["soy"]))
             added   (->> (core/fileset-added prev fileset)
                          core/input-files (core/by-ext ["soy"]))
@@ -40,10 +40,15 @@
             paths   (->> fileset core/input-files (core/by-ext ["soy"])
                          (map #(-> % core/tmp-file .getPath)))]
         (reset! prev-fileset fileset)
-        (util/info "found %s soy files...\n" (count paths))
         (cond
           (or (seq added) (seq removed))
-          (pod/with-call-in @p (mrmcc3.boot-soy.impl/set-files! ~paths))
+          (do
+            (util/info "[soy] building new fileset... %s total, %s added, %s removed.\n"
+              (count paths) (count added) (count removed))
+            (pod/with-call-in @p (mrmcc3.boot-soy.impl/set-files! ~paths)))
           (seq changed)
-          (pod/with-call-in @p (mrmcc3.boot-soy.impl/recompile-tofu!)))
+          (do
+            (util/info "[soy] recompiling tofu... %s total, %s changed.\n"
+              (count paths) (count changed))
+            (pod/with-call-in @p (mrmcc3.boot-soy.impl/recompile-tofu!))))
         (with-meta fileset {::render render})))))

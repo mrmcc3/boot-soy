@@ -7,6 +7,10 @@ This change log follows the conventions of
 ### Changed
 - no longer removes soy files from fileset. simplifies soy task
 - updated soy task docstring
+- updated util/info messages
+
+### Fixed
+- only use hash when considering changed files
 
 ## [0.1.1] - 2016-08-31
 ### Added
